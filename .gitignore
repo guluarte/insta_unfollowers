@@ -1,0 +1,5 @@
+sessions/*
+!sessions/.gitkeep
+.aider.tags.cache.v4
+.aider.chat.history.md
+.aider.input.history
