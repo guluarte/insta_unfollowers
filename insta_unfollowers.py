@@ -102,6 +102,19 @@ def main(username: Optional[str] = None):
         # Calculate non-followers
         non_followers = following - followers
 
+        # Create data directory
+        data_dir = Path("data")
+        data_dir.mkdir(exist_ok=True)
+
+        # Save lists to files
+        def save_to_file(filename: str, items: set[str]):
+            with open(data_dir / filename, "w") as f:
+                f.writelines(f"{u}\n" for u in sorted(items))
+
+        save_to_file(f"{username}_followers.txt", followers)
+        save_to_file(f"{username}_following.txt", following)
+        save_to_file(f"{username}_non_followers.txt", non_followers)
+
         # Display results
         click.echo(f"\n🔍 Results for @{username}:")
         click.echo(f"• Followers: {len(followers)}")
